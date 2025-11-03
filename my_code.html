@@ -1,0 +1,240 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>      *{
+        margin: 0px;
+        padding: 0px;
+        background-color: ;
+      }
+    </style>
+        </head>
+        <body>
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML MCQ Test</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  .question {
+    margin-bottom: 20px;
+  }
+  .question p {
+    font-weight: bold;
+    color: #333;
+  }
+  .options label {
+    display: block;
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #0056b3;
+  }
+  #result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>HTML MCQ Test (Total Marks: 40)</h1>
+  <form id="quizForm">
+
+    <div id="quiz"></div>
+
+    <button type="button" onclick="submitQuiz()">Submit</button>
+    <div id="result"></div>
+  </form>
+</div>
+
+<script>
+const questions = [
+  {
+    q: "1. What does HTML stand for?",
+    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Tabular Markup Language", "None of these"],
+    answer: 0
+  },
+  {
+    q: "2. Which HTML tag is used to define an internal style sheet?",
+    options: ["<script>", "<style>", "<css>", "<design>"],
+    answer: 1
+  },
+  {
+    q: "3. Which HTML tag is used to display a numbered list?",
+    options: ["<ul>", "<ol>", "<li>", "<list>"],
+    answer: 1
+  },
+  {
+    q: "4. The correct sequence of HTML tags for starting a webpage is:",
+    options: ["Head, Title, HTML, body", "HTML, Body, Title, Head", "HTML, Head, Title, Body", "HTML, Title, Head, Body"],
+    answer: 2
+  },
+  {
+    q: "5. Which tag is used to insert a line break?",
+    options: ["<br>", "<break>", "<lb>", "<b>"],
+    answer: 0
+  },
+  {
+    q: "6. Which tag is used to make text bold?",
+    options: ["<bold>", "<b>", "<strong>", "Both b and strong"],
+    answer: 3
+  },
+  {
+    q: "7. Which tag is used to display the largest heading?",
+    options: ["<heading>", "<h6>", "<head>", "<h1>"],
+    answer: 3
+  },
+  {
+    q: "8. HTML documents are saved with which extension?",
+    options: [".html", ".ht", ".doc", ".js"],
+    answer: 0
+  },
+  {
+    q: "9. How can you make a bulleted list?",
+    options: ["<dl>", "<ol>", "<ul>", "<list>"],
+    answer: 2
+  },
+  {
+    q: "10. Which tag is used to display an image?",
+    options: ["<img>", "<src>", "<image>", "<pic>"],
+    answer: 0
+  },
+  {
+    q: "11. What attribute is used to specify an image source?",
+    options: ["src", "link", "href", "source"],
+    answer: 0
+  },
+  {
+    q: "12. How do you create a hyperlink?",
+    options: ["<a src='url'>", "<a href='url'>", "<link='url'>", "<a>url</a>"],
+    answer: 1
+  },
+  {
+    q: "13. Which tag is used for inserting a background image?",
+    options: ["<background>", "body background=' '", "<bg>", "<bodyimg>"],
+    answer: 1
+  },
+  {
+    q: "14. Which tag is used to display a table?",
+    options: ["<table>", "<tab>", "<tb>", "<tbl>"],
+    answer: 0
+  },
+  {
+    q: "15. How to add a row in a table?",
+    options: ["<td>", "<tr>", "<th>", "<table-row>"],
+    answer: 1
+  },
+  {
+    q: "16. Which tag defines a table cell?",
+    options: ["<th>", "<td>", "<tr>", "<cell>"],
+    answer: 1
+  },
+  {
+    q: "17. Which tag is used to define a list item?",
+    options: ["<item>", "<li>", "<list>", "<ul>"],
+    answer: 1
+  },
+  {
+    q: "18. Which tag is used to define a form in HTML?",
+    options: ["<form>", "<forms>", "<input>", "<f>"],
+    answer: 0
+  },
+  {
+    q: "19. Which input type is used to create a checkbox?",
+    options: ["text", "radio", "checkbox", "check"],
+    answer: 2
+  },
+  {
+    q: "20. Which attribute is used to uniquely identify an element?",
+    options: ["id", "class", "name", "unique"],
+    answer: 0
+  },
+  // Add 30 more in same pattern (total 50)
+];
+
+function loadQuiz() {
+  const quizDiv = document.getElementById("quiz");
+  quizDiv.innerHTML = "";
+
+  questions.forEach((q, index) => {
+    let optionsHtml = "";
+    q.options.forEach((opt, i) => {
+      optionsHtml += `
+        <label>
+          <input type="radio" name="q${index}" value="${i}"> ${opt.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+        </label>
+      `;
+    });
+    quizDiv.innerHTML += `
+      <div class="question">
+        <p>${q.q.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+        <div class="options">${optionsHtml}</div>
+      </div>
+    `;
+  });
+}
+
+function submitQuiz() {
+  let score = 0;
+  questions.forEach((q, i) => {
+    const answer = document.querySelector(`input[name="q${i}"]:checked`);
+    if (answer && parseInt(answer.value) === q.answer) {
+      score += 0.8; // each question = 0.8 mark
+    }
+  });
+  document.getElementById("result").innerHTML = `Your Score: ${score.toFixed(1)} / 40`;
+}
+
+loadQuiz();
+</script>
+
+</body>
+</html>
+</body>
+</html>
+    
+          <script></script>
+        </body>
+        </html>
+      
